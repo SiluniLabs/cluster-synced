@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: afterhours-stream
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: afterhours-stream
+  template:
+    metadata:
+      labels:
+        app: afterhours-stream
+    spec:
+      containers:
+        - name: afterhours-stream
+          image: afterhours-stream
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 80
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            periodSeconds: 10
+          resources:
+            requests:
+              cpu: 10m
+              memory: 16Mi
+            limits:
+              cpu: 100m
+              memory: 64Mi

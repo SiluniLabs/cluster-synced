@@ -1,0 +1,15 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: afterhours-stream
+
+resources:
+  - namespace.yaml
+  - deployment.yaml
+  - service.yaml
+  - ingress.yaml
+
+images:
+  - name: afterhours-stream
+    newName: registry.siluni.fr/silunilabs/afterhours-stream
+    newTag: "91074943"
