@@ -20,10 +20,10 @@ spec:
           securityContext:
             privileged: true
           env:
-            - name: REPO_URL
-              value: https://github.com/Siluni-svg/acpl-forum
             - name: RUNNER_SCOPE
-              value: repo
+              value: org
+            - name: ORG_NAME
+              value: SiluniLabs
             - name: RUNNER_NAME
               valueFrom:
                 fieldRef:
