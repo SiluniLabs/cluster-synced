@@ -18,6 +18,10 @@ spec:
         githubConfigUrl: https://github.com/SiluniLabs
         githubConfigSecret: arc-github-app
 
+        controllerServiceAccount:
+          namespace: arc-systems
+          name: arc-controller-gha-rs-controller
+
         runnerScaleSetName: cluster-synced
         minRunners: 0
         maxRunners: 2
