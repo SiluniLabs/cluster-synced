@@ -23,7 +23,7 @@ spec:
           name: arc-controller-gha-rs-controller
 
         runnerScaleSetName: cluster-synced
-        minRunners: 0
+        minRunners: 1
         maxRunners: 2
 
         containerMode:

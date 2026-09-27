@@ -17,8 +17,8 @@ the decrypted secret. Do not let Argo CD sync this template before replacing
 the placeholders with valid credentials.
 
 ARC's runner scale set is named `cluster-synced`, so workflows must request it
-with `runs-on: cluster-synced`. It starts with zero idle runners and scales up
-to two concurrent runners. Docker builds use ARC's Docker-in-Docker mode, which
-requires privileged containers on the Kubernetes nodes. The scale set uses the
-organization's default runner group; restrict that group's repository access
-in GitHub before assigning jobs to it.
+with `runs-on: cluster-synced`. It keeps one idle runner available and scales
+up to two concurrent runners. Docker builds use ARC's Docker-in-Docker mode,
+which requires privileged containers on the Kubernetes nodes. The scale set
+uses the organization's default runner group; restrict that group's repository
+access in GitHub before assigning jobs to it.
