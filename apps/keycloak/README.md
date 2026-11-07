@@ -10,9 +10,10 @@ Before Argo CD syncs this application:
    `sops apps/keycloak/secret.sops.yaml`. Set a PostgreSQL host reachable from
    the cluster, database, username, password, and a strong initial admin
    password. Keep the file encrypted when committing it.
-3. Ensure PostgreSQL presents a certificate trusted by the Keycloak container
-   and valid for its hostname; the JDBC URL properties use
-   `?sslmode=verify-full` to enable certificate and hostname verification.
+3. The `db-ca.yaml` ConfigMap contains the AWS RDS global CA bundle, mounted
+   into Keycloak for PostgreSQL TLS verification. The JDBC URL properties use
+   `sslmode=verify-full`, which verifies both the certificate chain and that
+   the PostgreSQL certificate matches the hostname configured as `DB_HOST`.
 
 The bootstrap admin credentials are only used when Keycloak initializes its
 first administrator. After setup, rotate the administrator credentials in

@@ -16,6 +16,10 @@ spec:
         app: keycloak
     spec:
       terminationGracePeriodSeconds: 60
+      volumes:
+        - name: db-ca
+          configMap:
+            name: keycloak-db-ca
       containers:
         - name: keycloak
           image: quay.io/keycloak/keycloak:26.8.2
@@ -26,6 +30,10 @@ spec:
               containerPort: 8080
             - name: management
               containerPort: 9000
+          volumeMounts:
+            - name: db-ca
+              mountPath: /opt/keycloak/conf/db-ca
+              readOnly: true
           env:
             - name: KC_HOSTNAME
               value: https://account.siluni.fr
@@ -52,7 +60,7 @@ spec:
                   name: keycloak-secret
                   key: DB_DATABASE
             - name: KC_DB_URL_PROPERTIES
-              value: ?sslmode=verify-full
+              value: "?sslmode=verify-full&sslrootcert=/opt/keycloak/conf/db-ca/root.crt"
             - name: KC_DB_USERNAME
               valueFrom:
                 secretKeyRef:

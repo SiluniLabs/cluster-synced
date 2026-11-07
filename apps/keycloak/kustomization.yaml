@@ -5,6 +5,7 @@ namespace: keycloak
 
 resources:
   - namespace.yaml
+  - db-ca.yaml
   - deployment.yaml
   - service.yaml
   - ingress.yaml
