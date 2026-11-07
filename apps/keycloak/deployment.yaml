@@ -52,7 +52,7 @@ spec:
                   name: keycloak-secret
                   key: DB_DATABASE
             - name: KC_DB_URL_PROPERTIES
-              value: sslmode=verify-full
+              value: ?sslmode=verify-full
             - name: KC_DB_USERNAME
               valueFrom:
                 secretKeyRef:

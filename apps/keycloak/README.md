@@ -11,7 +11,8 @@ Before Argo CD syncs this application:
    the cluster, database, username, password, and a strong initial admin
    password. Keep the file encrypted when committing it.
 3. Ensure PostgreSQL presents a certificate trusted by the Keycloak container
-   and valid for its hostname; the JDBC connection uses `sslmode=verify-full`.
+   and valid for its hostname; the JDBC URL properties use
+   `?sslmode=verify-full` to enable certificate and hostname verification.
 
 The bootstrap admin credentials are only used when Keycloak initializes its
 first administrator. After setup, rotate the administrator credentials in
